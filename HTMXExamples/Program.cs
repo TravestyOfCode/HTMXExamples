@@ -1,6 +1,7 @@
 using HTMXExamples.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,7 +15,7 @@ public class Program
 
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseSqlite("Data Source=htmx_examples.db");
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
         // Add services to the container.
